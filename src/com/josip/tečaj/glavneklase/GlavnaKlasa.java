@@ -18,7 +18,7 @@ public class GlavnaKlasa {
 		
 	   //otvoriDatoteku("artikli.txt");
 	   //otvoriDatoteku("cjenik.txt");	
-	   otvoriDatoteku("f311214.dat.txt");
+	    otvoriDatoteku("f311214.dat.txt");
 	   //otvoriDatoteku("f311217.dat.txt");
 	   //otvoriDatoteku("pm.txt");
 	   //otvoriDatoteku("stanja.txt");	
@@ -46,7 +46,7 @@ public class GlavnaKlasa {
 		    {
 			brojLinije++;   
 		    line = inputStream.nextLine( );
-		    if(brojLinije==1) {
+		    if(brojLinije==1 && (ime=="f311214.dat.txt" || ime=="f311217.dat.txt")) {
 		    	Zaglavlje zaglavlje = new Zaglavlje();
 		    	zaglavlje.setBrojTeèajnice(vratiBroj(line,velicina));
 		    	System.out.println(zaglavlje.getBrojTeèajnice());
