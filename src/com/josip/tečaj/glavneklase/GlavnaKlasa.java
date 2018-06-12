@@ -3,10 +3,12 @@ package com.josip.teèaj.glavneklase;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.josip.teèaj.modeli.Datum;
+import com.josip.teèaj.modeli.Valute;
 import com.josip.teèaj.modeli.Zaglavlje;
 
 
@@ -18,10 +20,14 @@ public class GlavnaKlasa {
 		
 	   //otvoriDatoteku("artikli.txt");
 	   //otvoriDatoteku("cjenik.txt");	
-	    otvoriDatoteku("f311214.dat.txt");
-	   //otvoriDatoteku("f311217.dat.txt");
+	   
+	   otvoriTecaj();
 	   //otvoriDatoteku("pm.txt");
 	   //otvoriDatoteku("stanja.txt");	
+	}
+	public static void otvoriTecaj() {
+		 otvoriDatoteku("f311214.dat.txt");
+		 //otvoriDatoteku("f311217.dat.txt");
 	}
    public static void otvoriDatoteku(String ime) {
 	  
@@ -96,6 +102,11 @@ public class GlavnaKlasa {
 		        ispisiBrojIskoristenihZnakova(iskoristeno);
 		        ispisiZaglavlje(zaglavlje);
 		        
+		    }else {
+		    	List<Valute> valuta = new ArrayList<Valute>();
+		    	Valute val = new Valute();
+		    	line=zamijeniZarezSaToèkom(line);
+		    	ispisiLiniju(line);
 		    }
 		    
 		    
@@ -149,6 +160,23 @@ public class GlavnaKlasa {
 	  System.out.println(zaglavlje.getBrojTeèajnice()+" "+zaglavlje.getDatumIzrade()+" "+zaglavlje.getDatumPrimjene()+" "+zaglavlje.getBrojSlogovaKojiSlijedi());
   }
 	
-
+ 
+  public static String zamijeniZarezSaToèkom(String linija) {
+	  char znak[]=new char[linija.length()];
+	  for (int i = 0; i < znak.length; i++) {
+		znak[i]=linija.charAt(i);
+		if(znak[i]==','){
+				znak[i]='.';
+		}
+		System.out.println(znak[i]);
+		
+	}
+	  
+	  return spojiLinije(znak, linija.length());
+	  
+  }
+  public static void ispisiLiniju(String linija) {
+	 System.out.println(linija);
+  }
 
 }
