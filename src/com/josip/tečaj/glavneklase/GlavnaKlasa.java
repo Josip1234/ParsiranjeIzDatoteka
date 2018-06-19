@@ -21,15 +21,15 @@ public class GlavnaKlasa {
 	   //otvoriDatoteku("artikli.txt");
 	   //otvoriDatoteku("cjenik.txt");	
 	   
-	   otvoriTecaj();
+	   //otvoriTecaj();
 	   //otvoriDatoteku("pm.txt");
 	   //otvoriDatoteku("stanja.txt");	
 	}
-	public static void otvoriTecaj() {
-		 otvoriDatoteku("f311214.dat.txt");
+	/*public static void otvoriTecaj() {
+		 otvoriDatotekuValuta("f311214.dat.txt");
 		 //otvoriDatoteku("f311217.dat.txt");
 	}
-   public static void otvoriDatoteku(String ime) {
+   public static void otvoriDatotekuValuta(String ime) {
 	  
 	 
 		   Scanner inputStream = null;
@@ -107,6 +107,9 @@ public class GlavnaKlasa {
 		    	Valute val = new Valute();
 		    	line=zamijeniZarezSaToèkom(line);
 		    	ispisiLiniju(line);
+		        
+		    	
+		    	
 		    }
 		    
 		    
@@ -178,5 +181,6 @@ public class GlavnaKlasa {
   public static void ispisiLiniju(String linija) {
 	 System.out.println(linija);
   }
+*/
 
 }
