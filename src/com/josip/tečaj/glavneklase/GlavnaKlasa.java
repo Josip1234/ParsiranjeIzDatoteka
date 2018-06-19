@@ -21,11 +21,11 @@ public class GlavnaKlasa {
 	   //otvoriDatoteku("artikli.txt");
 	   //otvoriDatoteku("cjenik.txt");	
 	   
-	   //otvoriTecaj();
+	   otvoriTecaj();
 	   //otvoriDatoteku("pm.txt");
 	   //otvoriDatoteku("stanja.txt");	
 	}
-	/*public static void otvoriTecaj() {
+	public static void otvoriTecaj() {
 		 otvoriDatotekuValuta("f311214.dat.txt");
 		 //otvoriDatoteku("f311217.dat.txt");
 	}
@@ -55,37 +55,37 @@ public class GlavnaKlasa {
 		    if(brojLinije==1 && (ime=="f311214.dat.txt" || ime=="f311217.dat.txt")) {
 		    	Zaglavlje zaglavlje = new Zaglavlje();
 		    	zaglavlje.setBrojTeèajnice(vratiBroj(line,velicina));
-		    	System.out.println(zaglavlje.getBrojTeèajnice());
+		    	//System.out.println(zaglavlje.getBrojTeèajnice());
 		    	Datum datum = new Datum();
 		    	line=prekriziLiniju(line, velicina);
-		    	System.out.println(ispisiZnak(line));
+		    	//System.out.println(ispisiZnak(line));
 		    	int iskoristeno=velicina+2;
 		    	velicina=2;
 		    	datum.setDan(vratiBroj(line,velicina));
 		    	line=prekriziLiniju(line,velicina);
-		    	System.out.println(ispisiZnak(line));
+		    	//System.out.println(ispisiZnak(line));
 		    	iskoristeno=iskoristeno+2;
-		    	System.out.println(ispisiBrojIskoristenihZnakova(iskoristeno));
+		    	//System.out.println(ispisiBrojIskoristenihZnakova(iskoristeno));
 		    	velicina=2;
 		    	datum.setMjesec(vratiBroj(line, velicina));
 		        line=prekriziLiniju(line, velicina);
-		        System.out.println(ispisiZnak(line));
+		        //System.out.println(ispisiZnak(line));
 		        iskoristeno=iskoristeno+velicina;
-		        System.out.println(ispisiBrojIskoristenihZnakova(iskoristeno));
+		        //System.out.println(ispisiBrojIskoristenihZnakova(iskoristeno));
 		        velicina=4;
 		        datum.setGodina(vratiBroj(line,velicina));
 		        line=prekriziLiniju(line, velicina);
-		        System.out.println(ispisiZnak(line));
+		        //System.out.println(ispisiZnak(line));
 		        iskoristeno=iskoristeno+velicina;
-		        System.out.println(ispisiBrojIskoristenihZnakova(iskoristeno));
+		        //System.out.println(ispisiBrojIskoristenihZnakova(iskoristeno));
 		        zaglavlje.setDatumIzrade(postaviIIspisiDatum(datum));
 		        Datum datum3 = new Datum();
 		        velicina=2;
 		        datum3.setDan(vratiBroj(line, velicina));
 		        line=prekriziLiniju(line, velicina);
-		        System.out.println(ispisiZnak(line));
+		        //System.out.println(ispisiZnak(line));
 		        iskoristeno=iskoristeno+velicina;
-		        System.out.println(ispisiBrojIskoristenihZnakova(iskoristeno));
+		       // System.out.println(ispisiBrojIskoristenihZnakova(iskoristeno));
 		        velicina=2;
 		        datum3.setMjesec(vratiBroj(line, velicina));
 		        line=prekriziLiniju(line, velicina);
@@ -99,7 +99,7 @@ public class GlavnaKlasa {
 		        zaglavlje.setBrojSlogovaKojiSlijedi(vratiBroj(line, velicina));
 		        line=prekriziLiniju(line, velicina);
 		        iskoristeno=iskoristeno+velicina;
-		        ispisiBrojIskoristenihZnakova(iskoristeno);
+		        //ispisiBrojIskoristenihZnakova(iskoristeno);
 		        ispisiZaglavlje(zaglavlje);
 		        
 		    }else {
@@ -107,13 +107,28 @@ public class GlavnaKlasa {
 		    	Valute val = new Valute();
 		    	line=zamijeniZarezSaToèkom(line);
 		    	ispisiLiniju(line);
-		        
+		        val.setŠifraValute(vratiBroj(line, 3));
+		        System.out.println(val.getŠifraValute());
+		        int iskoristeniZnakovi=3;
+		        line=prekriziLiniju(line, iskoristeniZnakovi);
+		        //ispisiBrojIskoristenihZnakova(iskoristeniZnakovi);
+		        ispisiLiniju(line);
+		        val.setOznakaValute(vratiString(line, 3));
+		        System.out.println(val.getOznakaValute());
+		        iskoristeniZnakovi=iskoristeniZnakovi+3;
+		    	line=prekriziLiniju(line,3);
 		    	
+		    	val.setBrojJedinica(vratiBroj(line, 3));
+		    	System.out.println(val.getBrojJedinica());
+		    	iskoristeniZnakovi=iskoristeniZnakovi+4;
+		    	line=prekriziLiniju(line, iskoristeniZnakovi);
+		    	System.out.println(ispisiBrojIskoristenihZnakova(iskoristeniZnakovi));
+		    	ispisiLiniju(line);
 		    	
 		    }
 		    
 		    
-		    System.out.println(String.valueOf(brojLinije)+" "+line);
+		    //System.out.println(String.valueOf(brojLinije)+" "+line);
 		    }
 		    inputStream.close( );
 		  
@@ -124,15 +139,29 @@ public class GlavnaKlasa {
 	 for (int i = 0; i < znak.length; i++) {
 		 
 		znak[i]=linija.charAt(i);
-		System.out.println(znak[i]);
+		//System.out.println(znak[i]);
 		
 	}
 	 String spoji=spojiLinije(znak,velicinaPolja);
-	 System.out.println(spoji);
+	// System.out.println(spoji);
 	 int vrijednost=Integer.parseInt(spoji);
 	return vrijednost;   
 	 
    }
+   public static String vratiString(String linija,int velicinaPolja) {
+		 char[] znak = new char[velicinaPolja];
+		 for (int i = 0; i < znak.length; i++) {
+			 
+			znak[i]=linija.charAt(i);
+			//System.out.println(znak[i]);
+			
+		}
+		 String spoji=spojiLinije(znak,velicinaPolja);
+		// System.out.println(spoji);
+		
+		return spoji;   
+		 
+	   }
    public static String spojiLinije(char[] polje,int velicina) {
 		 String spojiTu="";
 		 for (int i = 0; i < polje.length; i++) {
@@ -155,7 +184,7 @@ public class GlavnaKlasa {
   }
   public static Datum postaviIIspisiDatum(Datum datum) {
 	  Datum datum2=new Datum(datum.getDan(),datum.getMjesec(),datum.getGodina());
-      System.out.println(datum2.getDatum());
+      //System.out.println(datum2.getDatum());
       return datum2;
   }
 
@@ -171,7 +200,7 @@ public class GlavnaKlasa {
 		if(znak[i]==','){
 				znak[i]='.';
 		}
-		System.out.println(znak[i]);
+		//System.out.println(znak[i]);
 		
 	}
 	  
@@ -181,6 +210,6 @@ public class GlavnaKlasa {
   public static void ispisiLiniju(String linija) {
 	 System.out.println(linija);
   }
-*/
+
 
 }
