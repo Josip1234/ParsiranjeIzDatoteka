@@ -122,8 +122,26 @@ public class GlavnaKlasa {
 		    	System.out.println(val.getBrojJedinica());
 		    	iskoristeniZnakovi=iskoristeniZnakovi+4;
 		    	line=prekriziLiniju(line, iskoristeniZnakovi);
+		    	
+		    	val.setKupovniTeèaj(vratiDupliBroj(line, 8));
+		    	System.out.println(val.getKupovniTeèaj());
+		    	iskoristeniZnakovi=iskoristeniZnakovi+5;
+		    	line=prekriziLiniju(line, iskoristeniZnakovi);
+		    	
+		    	
+		    	val.setSrednjiTeèaj((vratiDupliBroj(line, 8)));
+		    	System.out.println(val.getSrednjiTeèaj());
+		    	iskoristeniZnakovi=iskoristeniZnakovi;
+		    	line=prekriziLiniju(line, iskoristeniZnakovi);
 		    	System.out.println(ispisiBrojIskoristenihZnakova(iskoristeniZnakovi));
 		    	ispisiLiniju(line);
+		    	
+		    	val.setProdajniTeèaj(vratiDupliBroj(line, 8));
+		    	System.out.println(val.getProdajniTeèaj());
+		    	iskoristeniZnakovi=iskoristeniZnakovi;
+		    	line=prekriziLiniju(line, iskoristeniZnakovi);
+		        ispisiBrojIskoristenihZnakova(iskoristeniZnakovi);
+		        ispisiLiniju(line);
 		    	
 		    }
 		    
@@ -148,6 +166,32 @@ public class GlavnaKlasa {
 	return vrijednost;   
 	 
    }
+   public static double vratiDupliBroj(String linija,int velicinaPolja) {
+	    
+		 char[] znak = new char[velicinaPolja];
+		 for (int i = 0; i < znak.length; i++) {
+			 
+			znak[i]=linija.charAt(i);
+			if(znak[i]==' ') {
+				znak[i]=0;
+			}
+			//System.out.println(znak[i]);
+			
+		}
+		 String spoji=spojiLinije(znak,velicinaPolja);
+		 
+		// System.out.println(spoji);
+		 double vrijednost;
+		try {
+			vrijednost = Double.parseDouble(spoji);
+		} catch (NumberFormatException e) {
+			vrijednost=0.00;
+			
+		}
+		
+		return vrijednost;   
+		 
+	   }
    public static String vratiString(String linija,int velicinaPolja) {
 		 char[] znak = new char[velicinaPolja];
 		 for (int i = 0; i < znak.length; i++) {
