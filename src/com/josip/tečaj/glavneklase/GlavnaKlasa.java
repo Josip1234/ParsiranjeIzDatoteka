@@ -4,7 +4,9 @@ package com.josip.teèaj.glavneklase;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.josip.teèaj.modeli.Datum;
@@ -29,8 +31,8 @@ public class GlavnaKlasa {
 		 otvoriDatotekuValuta("f311214.dat.txt");
 		 //otvoriDatoteku("f311217.dat.txt");
 	}
-   public static void otvoriDatotekuValuta(String ime) {
-	  
+   public static Map<List<Zaglavlje>, List<Valute>> otvoriDatotekuValuta(String ime) {
+	       Map<List<Zaglavlje>, List<Valute>> mapa = new HashMap<List<Zaglavlje>, List<Valute>>();
 	 
 		   Scanner inputStream = null;
 		   int brojLinije=0;
@@ -138,10 +140,10 @@ public class GlavnaKlasa {
 		    	
 		    	val.setProdajniTeèaj(vratiDupliBroj(line, 8));
 		    	System.out.println(val.getProdajniTeèaj());
-		    	iskoristeniZnakovi=iskoristeniZnakovi;
-		    	line=prekriziLiniju(line, iskoristeniZnakovi);
-		        ispisiBrojIskoristenihZnakova(iskoristeniZnakovi);
-		        ispisiLiniju(line);
+		    	//iskoristeniZnakovi=iskoristeniZnakovi;
+		    	//line=prekriziLiniju(line, iskoristeniZnakovi);
+		        //ispisiBrojIskoristenihZnakova(iskoristeniZnakovi);
+		        //ispisiLiniju(line);
 		    	
 		    }
 		    
@@ -149,6 +151,7 @@ public class GlavnaKlasa {
 		    //System.out.println(String.valueOf(brojLinije)+" "+line);
 		    }
 		    inputStream.close( );
+		    return mapa;
 		  
    }
     
