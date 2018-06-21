@@ -66,6 +66,13 @@ public double getProdajniTeèaj() {
 
 public void setProdajniTeèaj(double prodajniTeèaj) {
 	this.prodajniTeèaj = prodajniTeèaj;
+}
+
+@Override
+public String toString() {
+	return "Valute [šifraValute=" + šifraValute + ", oznakaValute=" + oznakaValute + ", brojJedinica=" + brojJedinica
+			+ ", kupovniTeèaj=" + kupovniTeèaj + ", srednjiTeèaj=" + srednjiTeèaj + ", prodajniTeèaj=" + prodajniTeèaj
+			+ "]";
 };
 
 

@@ -51,6 +51,12 @@ public void setBrojSlogovaKojiSlijedi(int brojSlogovaKojiSlijedi) {
 	this.brojSlogovaKojiSlijedi = brojSlogovaKojiSlijedi;
 }
 
+@Override
+public String toString() {
+	return "Zaglavlje [brojTeèajnice=" + brojTeèajnice + ", datumIzrade=" + datumIzrade + ", datumPrimjene="
+			+ datumPrimjene + ", brojSlogovaKojiSlijedi=" + brojSlogovaKojiSlijedi + "]";
+}
+
 
 
 

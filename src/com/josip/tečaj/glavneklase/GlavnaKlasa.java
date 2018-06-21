@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -28,12 +29,24 @@ public class GlavnaKlasa {
 	   //otvoriDatoteku("stanja.txt");	
 	}
 	public static void otvoriTecaj() {
-		 otvoriDatotekuValuta("f311214.dat.txt");
+		Map<Zaglavlje,List<Valute>> map=new HashMap<Zaglavlje,List<Valute>>();
+		 map=otvoriDatotekuValuta("f311214.dat.txt");
+		 ispisiMapu(map);
 		 //otvoriDatoteku("f311217.dat.txt");
 	}
-   public static Map<List<Zaglavlje>, List<Valute>> otvoriDatotekuValuta(String ime) {
-	       Map<List<Zaglavlje>, List<Valute>> mapa = new HashMap<List<Zaglavlje>, List<Valute>>();
-	 
+	public static void ispisiMapu(Map<Zaglavlje,List<Valute>> ma) {
+		for(Map.Entry<Zaglavlje, List<Valute>> entry: ma.entrySet()) {
+			System.out.println(entry.getKey().toString());
+			System.out.println(entry.getValue().toString());
+		}
+		
+	}
+	
+   public static Map<Zaglavlje, List<Valute>> otvoriDatotekuValuta(String ime) {
+	       Map<Zaglavlje, List<Valute>> mapa = new HashMap<Zaglavlje, List<Valute>>();
+	       List<Valute> valuta = new ArrayList<Valute>();
+	       Zaglavlje zaglavlje = new Zaglavlje();
+	       
 		   Scanner inputStream = null;
 		   int brojLinije=0;
 		   int velicina=3;
@@ -55,7 +68,7 @@ public class GlavnaKlasa {
 			brojLinije++;   
 		    line = inputStream.nextLine( );
 		    if(brojLinije==1 && (ime=="f311214.dat.txt" || ime=="f311217.dat.txt")) {
-		    	Zaglavlje zaglavlje = new Zaglavlje();
+		    	
 		    	zaglavlje.setBrojTeèajnice(vratiBroj(line,velicina));
 		    	//System.out.println(zaglavlje.getBrojTeèajnice());
 		    	Datum datum = new Datum();
@@ -102,48 +115,49 @@ public class GlavnaKlasa {
 		        line=prekriziLiniju(line, velicina);
 		        iskoristeno=iskoristeno+velicina;
 		        //ispisiBrojIskoristenihZnakova(iskoristeno);
-		        ispisiZaglavlje(zaglavlje);
+		        //ispisiZaglavlje(zaglavlje);
 		        
 		    }else {
-		    	List<Valute> valuta = new ArrayList<Valute>();
+		    	
 		    	Valute val = new Valute();
 		    	line=zamijeniZarezSaToèkom(line);
-		    	ispisiLiniju(line);
+		    	//ispisiLiniju(line);
 		        val.setŠifraValute(vratiBroj(line, 3));
-		        System.out.println(val.getŠifraValute());
+		        //System.out.println(val.getŠifraValute());
 		        int iskoristeniZnakovi=3;
 		        line=prekriziLiniju(line, iskoristeniZnakovi);
 		        //ispisiBrojIskoristenihZnakova(iskoristeniZnakovi);
-		        ispisiLiniju(line);
+		        //ispisiLiniju(line);
 		        val.setOznakaValute(vratiString(line, 3));
-		        System.out.println(val.getOznakaValute());
+		        //System.out.println(val.getOznakaValute());
 		        iskoristeniZnakovi=iskoristeniZnakovi+3;
 		    	line=prekriziLiniju(line,3);
 		    	
 		    	val.setBrojJedinica(vratiBroj(line, 3));
-		    	System.out.println(val.getBrojJedinica());
+		    	//System.out.println(val.getBrojJedinica());
 		    	iskoristeniZnakovi=iskoristeniZnakovi+4;
 		    	line=prekriziLiniju(line, iskoristeniZnakovi);
 		    	
 		    	val.setKupovniTeèaj(vratiDupliBroj(line, 8));
-		    	System.out.println(val.getKupovniTeèaj());
+		    	//System.out.println(val.getKupovniTeèaj());
 		    	iskoristeniZnakovi=iskoristeniZnakovi+5;
 		    	line=prekriziLiniju(line, iskoristeniZnakovi);
 		    	
 		    	
 		    	val.setSrednjiTeèaj((vratiDupliBroj(line, 8)));
-		    	System.out.println(val.getSrednjiTeèaj());
+		    	//System.out.println(val.getSrednjiTeèaj());
 		    	iskoristeniZnakovi=iskoristeniZnakovi;
 		    	line=prekriziLiniju(line, iskoristeniZnakovi);
-		    	System.out.println(ispisiBrojIskoristenihZnakova(iskoristeniZnakovi));
-		    	ispisiLiniju(line);
+		    	//System.out.println(ispisiBrojIskoristenihZnakova(iskoristeniZnakovi));
+		    	//ispisiLiniju(line);
 		    	
 		    	val.setProdajniTeèaj(vratiDupliBroj(line, 8));
-		    	System.out.println(val.getProdajniTeèaj());
+		    	//System.out.println(val.getProdajniTeèaj());
 		    	//iskoristeniZnakovi=iskoristeniZnakovi;
 		    	//line=prekriziLiniju(line, iskoristeniZnakovi);
 		        //ispisiBrojIskoristenihZnakova(iskoristeniZnakovi);
 		        //ispisiLiniju(line);
+		    	valuta.add(val);
 		    	
 		    }
 		    
@@ -151,6 +165,7 @@ public class GlavnaKlasa {
 		    //System.out.println(String.valueOf(brojLinije)+" "+line);
 		    }
 		    inputStream.close( );
+		    mapa.put(zaglavlje, valuta);
 		    return mapa;
 		  
    }
