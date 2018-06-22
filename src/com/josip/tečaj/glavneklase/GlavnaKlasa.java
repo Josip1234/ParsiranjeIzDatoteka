@@ -61,8 +61,8 @@ public class GlavnaKlasa {
 			    iskoristeniZnakovi=1;
 			    line=prekriziLiniju(line, iskoristeniZnakovi);
 			    
-			    velicina=15;
-			    artikli.setNaziv(vratiString(line, velicina));
+			  
+			    artikli.setNaziv(vratiString(line));
 			    System.out.println(artikli.getNaziv());
 		   }
 		   inputStream.close( );
@@ -209,6 +209,7 @@ public class GlavnaKlasa {
 		    return mapa;
 		  
    }
+  
     
    public static int vratiBroj(String linija,int velicinaPolja) {
 	 char[] znak = new char[velicinaPolja];
@@ -250,7 +251,22 @@ public class GlavnaKlasa {
 		return vrijednost;   
 		 
 	   }
+   public static String vratiString(String linija) {
+	   int velicina=0;
+	   char[] znak=new char[linija.length()];
+	   for (int i = 0; i < linija.length(); i++) {
+		   if(linija.charAt(i)=='|') break;
+		   else {
+		znak[i]=linija.charAt(i);
+		velicina++;
+		   }
+	}
+	   String spoji=spojiLinije(znak,velicina);
+	   return spoji;
+   }
    public static String vratiString(String linija,int velicinaPolja) {
+	     
+	     
 		 char[] znak = new char[velicinaPolja];
 		 for (int i = 0; i < znak.length; i++) {
 			 
