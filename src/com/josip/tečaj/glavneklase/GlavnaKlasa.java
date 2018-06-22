@@ -5,11 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.josip.teèaj.modeli.Artikli;
 import com.josip.teèaj.modeli.Datum;
 import com.josip.teèaj.modeli.Valute;
 import com.josip.teèaj.modeli.Zaglavlje;
@@ -23,14 +24,53 @@ public class GlavnaKlasa {
 		
 	   //otvoriDatoteku("artikli.txt");
 	   //otvoriDatoteku("cjenik.txt");	
-	   
-	   otvoriTecaj();
+	   otvoriArtikle();
+	   //otvoriTecaj();
 	   //otvoriDatoteku("pm.txt");
 	   //otvoriDatoteku("stanja.txt");	
 	}
+	public static void otvoriArtikle() {
+		parsirajArtikle("artikli.txt");
+	}
+	public static List<Artikli>  parsirajArtikle(String imeDatoteke) {
+		Artikli artikli = new Artikli();
+		List<Artikli> art=new ArrayList<Artikli>();
+		 Scanner inputStream = null;
+		 int brojLinije=0;
+		 int velicina=7;
+		  try
+		    {
+		   inputStream =
+		  new Scanner(new FileInputStream(imeDatoteke));
+		  
+		    }
+		   catch(FileNotFoundException e)
+		   {
+		   System.out.println("Problem opening files.");
+		   System.exit(0);
+		    }
+		  String line = null;
+		   
+		   while (inputStream.hasNextLine( )) {
+			   brojLinije++;   
+			    line = inputStream.nextLine( );
+			    
+			    artikli.setSifra(vratiString(line, velicina));
+			    int iskoristeniZnakovi=velicina;
+			    line=prekriziLiniju(line, iskoristeniZnakovi);
+			    iskoristeniZnakovi=1;
+			    line=prekriziLiniju(line, iskoristeniZnakovi);
+			    
+			    velicina=15;
+			    artikli.setNaziv(vratiString(line, velicina));
+			    System.out.println(artikli.getNaziv());
+		   }
+		   inputStream.close( );
+		   return art;
+	}
 	public static void otvoriTecaj() {
 		Map<Zaglavlje,List<Valute>> map=new HashMap<Zaglavlje,List<Valute>>();
-		 map=otvoriDatotekuValuta("f311214.dat.txt");
+		 map=otvoriDatotekuValuta("f311217.dat.txt");
 		 ispisiMapu(map);
 		 //otvoriDatoteku("f311217.dat.txt");
 	}
@@ -146,7 +186,7 @@ public class GlavnaKlasa {
 		    	
 		    	val.setSrednjiTeèaj((vratiDupliBroj(line, 8)));
 		    	//System.out.println(val.getSrednjiTeèaj());
-		    	iskoristeniZnakovi=iskoristeniZnakovi;
+		    	//iskoristeniZnakovi=iskoristeniZnakovi;
 		    	line=prekriziLiniju(line, iskoristeniZnakovi);
 		    	//System.out.println(ispisiBrojIskoristenihZnakova(iskoristeniZnakovi));
 		    	//ispisiLiniju(line);
