@@ -55,7 +55,8 @@ public class GlavnaKlasa {
 			   brojLinije++;   
 			    line = inputStream.nextLine( );
 			    
-			    artikli.setSifra(vratiString(line, velicina));
+			    artikli.setSifra(vratiString(line));
+			    
 			    int iskoristeniZnakovi=velicina;
 			    line=prekriziLiniju(line, iskoristeniZnakovi);
 			    iskoristeniZnakovi=1;
@@ -63,7 +64,11 @@ public class GlavnaKlasa {
 			    
 			  
 			    artikli.setNaziv(vratiString(line));
+			    System.out.println(vratiVelicinuDoLinije(line));
 			    System.out.println(artikli.getNaziv());
+			    
+			    
+			    
 		   }
 		   inputStream.close( );
 		   return art;
@@ -252,11 +257,14 @@ public class GlavnaKlasa {
 		 
 	   }
    public static String vratiString(String linija) {
+	  
 	   int velicina=0;
 	   char[] znak=new char[linija.length()];
 	   for (int i = 0; i < linija.length(); i++) {
-		   if(linija.charAt(i)=='|') break;
+		  
+		   if(linija.charAt(i)=='|') break; 
 		   else {
+		   
 		znak[i]=linija.charAt(i);
 		velicina++;
 		   }
@@ -264,6 +272,28 @@ public class GlavnaKlasa {
 	   String spoji=spojiLinije(znak,velicina);
 	   return spoji;
    }
+   
+   
+   public static int vratiVelicinuDoLinije(String linija) {
+		  
+	   int velicina=0;
+	   char[] znak=new char[linija.length()];
+	   for (int i = 0; i < linija.length(); i++) {
+		  
+		   if(linija.charAt(i)=='|') {break;
+		   }else {
+		znak[i]=linija.charAt(i);
+		velicina++;
+		   }
+	}
+	   
+	   return velicina;
+   }
+   
+   
+   
+   
+   
    public static String vratiString(String linija,int velicinaPolja) {
 	     
 	     
