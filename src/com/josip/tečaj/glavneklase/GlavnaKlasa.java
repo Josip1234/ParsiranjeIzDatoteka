@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import com.josip.teèaj.modeli.Artikli;
+import com.josip.teèaj.modeli.CijeneArtikala;
 import com.josip.teèaj.modeli.Datum;
 import com.josip.teèaj.modeli.Valute;
 import com.josip.teèaj.modeli.Zaglavlje;
@@ -24,16 +25,57 @@ public class GlavnaKlasa {
 		
 	   //otvoriDatoteku("artikli.txt");
 	   //otvoriDatoteku("cjenik.txt");	
-	   otvoriArtikle();
+	   //otvoriArtikle();
 	   //otvoriTecaj();
+		otvoriCijenik();
 	   //otvoriDatoteku("pm.txt");
 	   //otvoriDatoteku("stanja.txt");	
+	}
+	public static void otvoriCijenik() {
+		ispisiCijenik(parsirajCijenik("cjenik.txt"));
+	}
+	public static List<CijeneArtikala> parsirajCijenik(String imeDatoteke){
+		List<CijeneArtikala> cijene=new ArrayList<CijeneArtikala>();
+		CijeneArtikala cijeneArtikala=new CijeneArtikala();
+		 Scanner inputStream = null;
+		 
+			
+		  try
+		    {
+		   inputStream =
+		  new Scanner(new FileInputStream(imeDatoteke));
+		  
+		    }
+		   catch(FileNotFoundException e)
+		   {
+		   System.out.println("Problem opening files.");
+		   System.exit(0);
+		    }
+		  String line = null;
+		   
+		   while (inputStream.hasNextLine( )) {
+			      
+			    line = inputStream.nextLine( );
+			    cijeneArtikala.setSifraArtikla(vratiString(line));
+			   
+			    line=prekriziLiniju(line, vratiVelicinuDoLinije(line)+1);
+			    cijeneArtikala.setCijenaUKunama(vratiDupliBroj(line));
+			    cijene.add(new CijeneArtikala(cijeneArtikala.getSifraArtikla(), cijeneArtikala.getCijenaUKunama()));
+		   };
+		  
+		return cijene;
 	}
 	public static void otvoriArtikle() {
 		ispisiArtikle(parsirajArtikle("artikli.txt"));
 	}
 	public static void ispisiArtikle(List<Artikli> art) {
 		for (Artikli artikli : art) {
+			System.out.println(artikli.toString());
+		}
+		
+	}
+	public static void ispisiCijenik(List<CijeneArtikala> cijene) {
+		for (CijeneArtikala artikli : cijene) {
 			System.out.println(artikli.toString());
 		}
 		
@@ -252,6 +294,34 @@ public class GlavnaKlasa {
 			
 		}
 		 String spoji=spojiLinije(znak,velicinaPolja);
+		 
+		// System.out.println(spoji);
+		 double vrijednost;
+		try {
+			vrijednost = Double.parseDouble(spoji);
+		} catch (NumberFormatException e) {
+			vrijednost=0.00;
+			
+		}
+		
+		return vrijednost;   
+		 
+	   }
+   public static double vratiDupliBroj(String linija) {
+	    
+		 char[] znak = new char[linija.length()];
+		 for (int i = 0; i < znak.length; i++) {
+			 
+			znak[i]=linija.charAt(i);
+			if(znak[i]==' ') {
+				znak[i]=0;
+			}else if(znak[i]==',') {
+				znak[i]='.';
+			}
+			//System.out.println(znak[i]);
+			
+		}
+		 String spoji=spojiLinije(znak,linija.length());
 		 
 		// System.out.println(spoji);
 		 double vrijednost;

@@ -22,5 +22,9 @@ public double getCijenaUKunama() {
 public void setCijenaUKunama(double cijenaUKunama) {
 	this.cijenaUKunama = cijenaUKunama;
 }
+@Override
+public String toString() {
+	return "CijeneArtikala [sifraArtikla=" + sifraArtikla + ", cijenaUKunama=" + cijenaUKunama + "]";
+}
 
 }
