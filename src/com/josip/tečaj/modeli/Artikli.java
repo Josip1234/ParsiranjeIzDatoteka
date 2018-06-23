@@ -31,5 +31,9 @@ public String getJedinicaMjere() {
 public void setJedinicaMjere(String jedinicaMjere) {
 	this.jedinicaMjere = jedinicaMjere;
 }
+@Override
+public String toString() {
+	return "Artikli : sifra="+ sifra+",naziv="+naziv+",jedinicaMjere="+jedinicaMjere+"";
+}
 
 }

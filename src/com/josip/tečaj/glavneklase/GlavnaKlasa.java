@@ -30,14 +30,20 @@ public class GlavnaKlasa {
 	   //otvoriDatoteku("stanja.txt");	
 	}
 	public static void otvoriArtikle() {
-		parsirajArtikle("artikli.txt");
+		ispisiArtikle(parsirajArtikle("artikli.txt"));
+	}
+	public static void ispisiArtikle(List<Artikli> art) {
+		for (Artikli artikli : art) {
+			System.out.println(artikli.toString());
+		}
+		
 	}
 	public static List<Artikli>  parsirajArtikle(String imeDatoteke) {
 		Artikli artikli = new Artikli();
 		List<Artikli> art=new ArrayList<Artikli>();
 		 Scanner inputStream = null;
-		 int brojLinije=0;
-		 int velicina=7;
+		 
+		
 		  try
 		    {
 		   inputStream =
@@ -52,21 +58,24 @@ public class GlavnaKlasa {
 		  String line = null;
 		   
 		   while (inputStream.hasNextLine( )) {
-			   brojLinije++;   
+			      
 			    line = inputStream.nextLine( );
 			    
 			    artikli.setSifra(vratiString(line));
 			    
-			    int iskoristeniZnakovi=velicina;
-			    line=prekriziLiniju(line, iskoristeniZnakovi);
-			    iskoristeniZnakovi=1;
-			    line=prekriziLiniju(line, iskoristeniZnakovi);
+			   
 			    
+			    line=prekriziLiniju(line, vratiVelicinuDoLinije(line)+1);
 			  
-			    artikli.setNaziv(vratiString(line));
-			    System.out.println(vratiVelicinuDoLinije(line));
-			    System.out.println(artikli.getNaziv());
 			    
+			
+			    
+			     
+			    artikli.setNaziv(vratiString(line));
+			   
+			    line=prekriziLiniju(line, vratiVelicinuDoLinije(line)+1);
+			    artikli.setJedinicaMjere(vratiString(line));
+			    art.add(new Artikli(artikli.getSifra(), artikli.getNaziv(), artikli.getJedinicaMjere()));
 			    
 			    
 		   }
