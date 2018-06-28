@@ -21,5 +21,9 @@ public String getNazivProdajnogMjesta() {
 public void setNazivProdajnogMjesta(String nazivProdajnogMjesta) {
 	this.nazivProdajnogMjesta = nazivProdajnogMjesta;
 }
+@Override
+public String toString() {
+	return "PopisProdajnihMjesta [sifra=" + sifra + ", nazivProdajnogMjesta=" + nazivProdajnogMjesta + "]";
+}
 
 }

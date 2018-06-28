@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,6 +13,7 @@ import java.util.Scanner;
 import com.josip.teèaj.modeli.Artikli;
 import com.josip.teèaj.modeli.CijeneArtikala;
 import com.josip.teèaj.modeli.Datum;
+import com.josip.teèaj.modeli.PopisProdajnihMjesta;
 import com.josip.teèaj.modeli.Valute;
 import com.josip.teèaj.modeli.Zaglavlje;
 
@@ -27,9 +28,46 @@ public class GlavnaKlasa {
 	   //otvoriDatoteku("cjenik.txt");	
 	   //otvoriArtikle();
 	   //otvoriTecaj();
-		otvoriCijenik();
-	   //otvoriDatoteku("pm.txt");
+		//otvoriCijenik();
+	   otvoriPopisProdajnihMjesta();
 	   //otvoriDatoteku("stanja.txt");	
+	}
+	public static void otvoriPopisProdajnihMjesta() {
+		ispisiListuProdajnihMjesta(otvoriPopis("pm.txt"));
+	}
+	public static void ispisiListuProdajnihMjesta(List<PopisProdajnihMjesta> prodajnaMjesta) {
+		for (PopisProdajnihMjesta popisProdajnihMjesta : prodajnaMjesta) {
+			System.out.println(popisProdajnihMjesta);
+		}
+	}
+	
+	public static List<PopisProdajnihMjesta> otvoriPopis(String link) {
+		List<PopisProdajnihMjesta> prodajnaMjesta=new ArrayList<PopisProdajnihMjesta>();
+		PopisProdajnihMjesta popisProdajnihMjesta = new PopisProdajnihMjesta();
+		Scanner inputStream = null;
+		 
+		
+		  try
+		    {
+		   inputStream =
+		  new Scanner(new FileInputStream(link));
+		  
+		    }
+		   catch(FileNotFoundException e)
+		   {
+		   System.out.println("Problem opening files.");
+		   System.exit(0);
+		    }
+		  String line = null;
+		   
+		   while (inputStream.hasNextLine( )) {
+			   line = inputStream.nextLine( );
+			   popisProdajnihMjesta.setSifra(vratiString(line));
+			   line=prekriziLiniju(line, vratiVelicinuDoLinije(line)+1);
+			   popisProdajnihMjesta.setNazivProdajnogMjesta(vratiString(line));
+			   prodajnaMjesta.add(new PopisProdajnihMjesta(popisProdajnihMjesta.getSifra(),popisProdajnihMjesta.getNazivProdajnogMjesta()));
+		   }
+		   return prodajnaMjesta;
 	}
 	public static void otvoriCijenik() {
 		ispisiCijenik(parsirajCijenik("cjenik.txt"));
