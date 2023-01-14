@@ -34,23 +34,7 @@ public char[] returnFieldOfChars() {
 		
 			setListOFChars(listOFChars);
 			placeOfTheIndexInVals1=size_of_vals1;
-			listOFChars=getListOFChars();
-			System.out.println(listOFChars);
-			char[] tmp=listOFChars;
-			for(int index=vals1.length;index<=listOFChars.length;index++) {
-				
-				  
-				   
-				for(int p=0; p<vals.length;p++) {
-			          
-					 listOFChars[p]=vals[p];
-					 
-			
-				
-				}
-				setListOFChars(listOFChars);
-		
-	}
+
 		
 		
 		}
