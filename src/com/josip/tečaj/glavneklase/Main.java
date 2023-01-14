@@ -6,9 +6,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		char[] array= {};
+
 ParsingSign parsingSign= new ParsingSign();
-parsingSign.returnFieldOfChars();
+System.out.println(parsingSign.returnFieldOfChars());
+
 
 	}
 
